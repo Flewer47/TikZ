@@ -803,7 +803,32 @@
 	\end{center}
 	
 \section{Graphes : Introduction}
-	\subsection{Notions de base}
+	\subsection{Voyelle ou consonne}
+	
+	\begin{center}
+		\begin{tikzpicture}
+		\tikzstyle{lettre} = [circle,draw,fill=yellow!50,text=blue]
+		\tikzstyle{type} = [circle,fill=red!25]
+		\tikzstyle{fleche} = [->,>=stealth,thick]
+		
+		\node[lettre](A) at (0,2) {A};
+		\node[lettre](B) at (0,1) {B};
+		\node[lettre](C) at (0,0) {C};
+		\node[lettre](D) at (0,-1) {D};
+		\node[lettre](E) at (0,-2) {E};
+		
+		\node[type](Consonne) at (3,0) {Consonne};
+		\node[type](Voyelle) at (-3,0) {Voyelle};
+		
+		\draw[fleche] (A) -- (Voyelle);
+		\draw[fleche] (B) -- (Consonne);
+		\draw[fleche] (C) -- (Consonne);
+		\draw[fleche] (D) -- (Consonne);
+		\draw[fleche] (E) -- (Voyelle);
+		\end{tikzpicture}
+	\end{center}
+	
+	
 	
 	
 \end{document}
