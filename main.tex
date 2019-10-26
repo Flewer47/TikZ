@@ -903,6 +903,34 @@
 		\end{tikzpicture}
 	\end{center}
 	
+	\subsection{Arbre généalogique}
+	
+	\begin{center}
+		\begin{tikzpicture}
+		\tikzstyle{lien} = [->,>=stealth,rounded corners=5pt,thick]
+		\tikzset{
+			individu/.style={draw,thick,fill=#1!25},
+			individu/.default={green}
+		}
+	
+		\node[individu] (B) at (0,0) {Bibi};
+		\node[individu=blue] (P) at (-3,2) {Papa};
+		\node[individu=red] (M) at (3,2) {Maman};
+		\node[individu=blue] (PP) at (-5,4) {Pépé};
+		\node[individu=red] (MP) at (-1,4) {Mémé};
+		\node[individu=blue] (PM) at (1,4) {Papy};
+		\node[individu=red] (MM) at (5,4) {Mamie};		 
+		
+		\draw[lien] (B) |- (-1,1) -| (P);
+		\draw[lien] (B) |- (1,1) -| (M);
+		\draw[lien] (P) |- (-4,3) -| (PP);
+		\draw[lien] (P) |- (-2,3) -| (MP);
+		\draw[lien] (M) |- (2,3) -| (PM);
+		\draw[lien] (M) |- (4,3) -| (MM);
+		\end{tikzpicture}
+	\end{center}
+	
+	
 	
 \end{document}
 
