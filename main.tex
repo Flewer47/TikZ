@@ -5,6 +5,9 @@
 % TikZ
 \usepackage{tikz}
 
+% For ellipses, diamons, aspects
+\usetikzlibrary{shapes,arrows}
+
 \title{\textbf{Exemples de l'utilisation de TikZ} \\
 		La version de TikZ est : \pgfversion}
 \author{Régis Santet}
@@ -939,20 +942,59 @@
 		% définition des styles
 		\tikzstyle{quadri}=[rectangle,draw,fill=yellow!50,text=blue]
 		\tikzstyle{estun}=[->,>=latex,very thick,dotted]
+		
 		% les nœuds
 		\node[quadri] (Q) at (0,3) {Quadrilatère};
 		\node[quadri] (P) at (0,1.5) {Parallélogramme};
 		\node[quadri] (R) at (-3,0) {Rectangle};
 		\node[quadri] (L) at (3,0) {Losange};
 		\node[quadri] (C) at (5,-1.5) {Carré};
+		
 		% les flèches
 		\draw[estun] (P)--(Q);
 		\draw[estun] (R)to[bend left](Q); \draw[estun] (R)--(P);
 		\draw[estun] (L)--(Q.south east); \draw[estun] (L)--(P);
 		\draw[estun] (C)to[bend right](Q.east); \draw[estun] (C)to[bend left](P);
 		\draw[estun] (C)--(L.south east); \draw[estun] (C)to[bend left](R);
+		
 		% la légende
 		\draw[estun] (-4.5,2.5)--(-3,2.5)node[midway,above]{est un};
+		\end{tikzpicture}
+	\end{center}
+
+	\subsection{Organigramme informatique}
+	
+	\begin{center}
+		\begin{tikzpicture}[scale=1.1]
+		% style des nœuds
+		\tikzstyle{debutfin}=[ellipse,draw,text=red]
+		\tikzstyle{instruct}=[rectangle,draw,fill=yellow!50]
+		\tikzstyle{test}=[diamond, aspect=2.5,thick,
+		draw=blue,fill=yellow!50,text=blue]
+		\tikzstyle{es}=[rectangle,draw,rounded corners=4pt,fill=blue!25]
+		
+		% style des flèches
+		\tikzstyle{suite}=[->,>=stealth,thick,rounded corners=4pt]
+		
+		% placement des nœuds
+		\node[debutfin] (debut) at (-2,5) {Début};
+		\node[es] (lire) at (-2,4) {Lire un entier positif $N$};
+		\node[test] (test) at (0,0) {$N>0$ \ ?};
+		\node[instruct] (init) at (-2,2.5) {$S\leftarrow 0$};
+		\node[instruct] (plus) at (0,-2.5) {$S\leftarrow S+N$};
+		\node[instruct] (moins) at (0,-3.5) {$N\leftarrow N-1$};
+		\node[es] (afficher) at (-4,-2) {Afficher la somme $S$};
+		\node[debutfin] (fin) at (-4,-3) {Fin};
+		
+		% Placement des flèches
+		\draw[suite] (debut) -- (lire);
+		\draw[suite] (lire) -- (init);
+		\draw[suite] (init) -- (test.north);
+		\draw[suite] (test) -- (plus) node[midway,fill=white]{oui};
+		\draw[suite] (plus) -- (moins);
+		\draw[suite] (moins)|-(3,-4.5) |- (1,1.5)--(test.north);
+		\draw[suite] (test)-|(afficher)node[near start,fill=white]{non};
+		\draw[suite] (afficher) -- (fin);
 		\end{tikzpicture}
 	\end{center}
 	
