@@ -5,8 +5,11 @@
 % TikZ
 \usepackage{tikz}
 
-% For ellipses, diamons, aspects
+% Pour les ellipses, diamands,...
 \usetikzlibrary{shapes,arrows}
+
+% Pour les anneaux olympiques
+\usetikzlibrary{calc}
 
 \title{\textbf{Exemples de l'utilisation de TikZ} \\
 		La version de TikZ est : \pgfversion}
@@ -1094,6 +1097,39 @@
 		\end{tikzpicture}
 	\end{center}
 	
+\section{Des figures aux illustrations}
+
+	\subsection{Les anneaux olympiques}
 	
+	\begin{center}
+		\begin{tikzpicture}
+		% Commands
+		\newcommand{\anneau}[2]%
+		{\fill[#2,even odd rule] (#1) circle (2.5) circle (3);}
+		\newcommand{\recouvrement}[3]%
+		{\fill[#3]
+			(#1) ++(#2:3)
+			arc (#2:{#2-30}:3)
+			-- ++({#2-30}:-0.5)
+			arc ({#2-30}:#2:2.5) -- cycle;}
+		
+		\coordinate (A) at (-6.4,0);
+		\coordinate (B) at (-3.2,-3.2);
+		\coordinate (C) at (0,0);
+		\coordinate (D) at (3.2,-3.2);
+		\coordinate (E) at (6.4,0);
+		
+		\anneau{A}{blue}
+		\anneau{C}{black}
+		\anneau{D}{green}
+		\anneau{B}{yellow}
+		\anneau{E}{red}
+		\recouvrement{A}{0}{blue}
+		\recouvrement{B}{90}{yellow}
+		\recouvrement{C}{0}{black}
+		\recouvrement{D}{90}{green}
+		\end{tikzpicture}
+	\end{center}
+
 \end{document}
 
